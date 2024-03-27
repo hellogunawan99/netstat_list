@@ -23,19 +23,19 @@ type Server struct {
 
 func main() {
 	// Open SQLite database
-	db, err := sql.Open("sqlite3", "./server_data.db")
+	db, err := sql.Open("sqlite3", "./master_status.db")
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer db.Close()
 
 	// Create server data table if not exists
-	_, err = db.Exec(`CREATE TABLE IF NOT EXISTS server_data (
+	_, err = db.Exec(`CREATE TABLE IF NOT EXISTS master_status (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         alias TEXT,
         ip TEXT,
         foreign_address TEXT,
-        status_output TEXT
+        status TEXT
     );`)
 	if err != nil {
 		log.Fatal(err)
